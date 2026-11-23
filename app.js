@@ -1017,7 +1017,10 @@ function mostrarDetalleSesion(id) {
     '<p class="mini">' + s.seriesHechas + '/' + s.seriesTotales + ' series · Volumen ' +
     (s.volumen || 0).toLocaleString('es-MX') + (s.duracionSeg ? ' · Duración ' + fmtTiempo(s.duracionSeg) : '') + '</p>';
   if (s.recomendaciones) {
-    html += '<p>' + esc(s.recomendaciones.general || '') + '</p>';
+    const recGeneral = typeof s.recomendaciones === 'string'
+      ? s.recomendaciones
+      : (s.recomendaciones.general || '');
+    html += '<p>' + esc(recGeneral) + '</p>';
     if (s.recomendaciones.porEjercicio) {
       html += '<ul>' + s.recomendaciones.porEjercicio.map(p =>
         '<li><b>' + esc(p.nombre) + ':</b> ' + esc(p.texto) + '</li>').join('') + '</ul>';
@@ -1185,8 +1188,21 @@ function importarRespaldo(archivo) {
         return;
       }
       if (!confirm('Importar ' + data.sesiones.length + ' sesiones y ' + data.series.length + ' series? Esto reemplaza los datos actuales.')) return;
-      state.sesiones = data.sesiones;
-      state.series = data.series;
+      // Normalizar a la forma interna: id numérico, terminada booleana,
+      // recomendaciones como {general, porEjercicio} (el respaldo trae el
+      // texto de la IA como string) y series con sesionId y hecha booleana.
+      state.sesiones = data.sesiones.map(s => ({
+        ...s,
+        id: s.id != null ? s.id : s.sesionId,
+        terminada: s.terminada === true || s.terminada === 'Sí',
+        recomendaciones: typeof s.recomendaciones === 'string'
+          ? { general: s.recomendaciones, porEjercicio: [] }
+          : (s.recomendaciones || null),
+      }));
+      state.series = data.series.map(f => ({
+        ...f,
+        hecha: f.hecha === true || f.hecha === 'Sí',
+      }));
       state.notas = data.notas || {};
       state.activa = null;
       guardarEstado();
