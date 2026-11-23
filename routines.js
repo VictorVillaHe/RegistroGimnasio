@@ -5,6 +5,7 @@
 const ROUTINES = [
   {
     "id": "lun-01",
+    "foto": "images/lun-01.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -20,6 +21,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-02",
+    "foto": "images/lun-02.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -35,6 +37,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-03",
+    "foto": "images/lun-03.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -49,6 +52,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-04",
+    "foto": "images/lun-04.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -64,6 +68,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-05",
+    "foto": "images/lun-05.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -79,6 +84,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-06",
+    "foto": "images/lun-06.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -93,6 +99,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-07",
+    "foto": "images/lun-07.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -108,6 +115,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-08",
+    "foto": "images/lun-08.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -123,6 +131,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-09",
+    "foto": "images/lun-09.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -138,6 +147,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-10",
+    "foto": "images/lun-10.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -153,6 +163,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-11",
+    "foto": "images/lun-11.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "HOMBRO",
@@ -169,6 +180,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-12",
+    "foto": "images/lun-12.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "PANTORRILLA",
@@ -184,6 +196,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-13",
+    "foto": "images/lun-13.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "PANTORRILLA",
@@ -199,6 +212,7 @@ const ROUTINES = [
   },
   {
     "id": "lun-14",
+    "foto": "images/lun-14.jpg",
     "dia": "Lunes",
     "rutina": "Hombro y pantorrilla",
     "seccion": "PANTORRILLA",
@@ -214,6 +228,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-15",
+    "foto": "images/mar-15.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -229,6 +244,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-16",
+    "foto": "images/mar-16.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -244,6 +260,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-17",
+    "foto": "images/mar-17.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -259,6 +276,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-18",
+    "foto": "images/mar-18.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -274,6 +292,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-19",
+    "foto": "images/mar-19.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -289,6 +308,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-20",
+    "foto": "images/mar-20.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -304,6 +324,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-21",
+    "foto": "images/mar-21.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -319,6 +340,7 @@ const ROUTINES = [
   },
   {
     "id": "mar-22",
+    "foto": "images/mar-22.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",
@@ -334,6 +356,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-23",
+    "foto": "images/mié-23.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "TRÍCEPS",
@@ -349,6 +372,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-24",
+    "foto": "images/mié-24.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "TRÍCEPS",
@@ -364,6 +388,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-25",
+    "foto": "images/mié-25.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "TRÍCEPS",
@@ -379,6 +404,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-26",
+    "foto": "images/mié-26.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "TRÍCEPS",
@@ -394,6 +420,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-27",
+    "foto": "images/mié-27.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "PECHO",
@@ -409,6 +436,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-28",
+    "foto": "images/mié-28.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "PECHO",
@@ -424,6 +452,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-29",
+    "foto": "images/mié-29.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "PECHO",
@@ -439,6 +468,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-30",
+    "foto": "images/mié-30.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "PECHO",
@@ -454,6 +484,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-31",
+    "foto": "images/mié-31.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "PECHO",
@@ -469,6 +500,7 @@ const ROUTINES = [
   },
   {
     "id": "mié-32",
+    "foto": "images/mié-32.jpg",
     "dia": "Miércoles",
     "rutina": "Tríceps y pecho",
     "seccion": "PECHO",
@@ -484,6 +516,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-33",
+    "foto": "images/jue-33.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "BÍCEPS",
@@ -499,6 +532,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-34",
+    "foto": "images/jue-34.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "BÍCEPS",
@@ -514,6 +548,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-35",
+    "foto": "images/jue-35.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "BÍCEPS",
@@ -529,6 +564,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-36",
+    "foto": "images/jue-36.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "BÍCEPS",
@@ -544,6 +580,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-37",
+    "foto": "images/jue-37.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -559,6 +596,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-38",
+    "foto": "images/jue-38.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -574,6 +612,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-39",
+    "foto": "images/jue-39.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -589,6 +628,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-40",
+    "foto": "images/jue-40.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -604,6 +644,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-41",
+    "foto": "images/jue-41.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -619,6 +660,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-42",
+    "foto": "images/jue-42.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -634,6 +676,7 @@ const ROUTINES = [
   },
   {
     "id": "jue-43",
+    "foto": "images/jue-43.jpg",
     "dia": "Jueves",
     "rutina": "Bíceps y espalda",
     "seccion": "ESPALDA",
@@ -649,6 +692,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-44",
+    "foto": "images/vie-44.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "PANTORRILLA",
@@ -664,6 +708,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-45",
+    "foto": "images/vie-45.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "PANTORRILLA",
@@ -679,6 +724,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-46",
+    "foto": "images/vie-46.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "PANTORRILLA",
@@ -694,6 +740,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-47",
+    "foto": "images/vie-47.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -709,6 +756,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-48",
+    "foto": "images/vie-48.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -724,6 +772,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-49",
+    "foto": "images/vie-49.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -739,6 +788,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-50",
+    "foto": "images/vie-50.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -754,6 +804,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-51",
+    "foto": "images/vie-51.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -769,6 +820,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-52",
+    "foto": "images/vie-52.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -784,6 +836,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-53",
+    "foto": "images/vie-53.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",
@@ -799,6 +852,7 @@ const ROUTINES = [
   },
   {
     "id": "vie-54",
+    "foto": "images/vie-54.jpg",
     "dia": "Viernes",
     "rutina": "Glúteo y femoral",
     "seccion": "GLÚTEO-FEMORAL",

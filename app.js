@@ -339,6 +339,10 @@ function cargarEstado() {
   state.activa = lsGet(LS.activa, null);
   const override = lsGet(LS.rutinas, null);
   state.rutinas = (override && override.length) ? override : JSON.parse(JSON.stringify(ROUTINES));
+  // Migración: rutinas guardadas antes de las fotos heredan la foto de ROUTINES por id.
+  const fotos = {};
+  for (const r of ROUTINES) fotos[r.id] = r.foto;
+  for (const r of state.rutinas) if (!r.foto && fotos[r.id]) r.foto = fotos[r.id];
 }
 function guardarEstado() {
   lsSet(LS.sesiones, state.sesiones);
@@ -356,6 +360,12 @@ function siguienteSesionId() {
 }
 function esc(s) {
   return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+}
+
+/* Foto del ejercicio (si la rutina la trae); si falta o no carga, no se muestra nada. */
+function fotoEj(r, cls) {
+  if (!r || !r.foto) return '';
+  return '<img class="' + (cls || 'ej-foto') + '" src="' + esc(r.foto) + '" alt="" loading="lazy" onerror="this.remove()">';
 }
 function $(id) { return document.getElementById(id); }
 
@@ -433,7 +443,7 @@ function renderEntrenar() {
     const sugTxt = sug.peso == null
       ? '<span class="sug nodata">Sin datos</span>'
       : '<span class="sug">Sugerido: ' + fmtPeso(sug.peso, r.unidad) + (sug.sube ? ' ↑' : '') + '</span>';
-    return '<div class="ej-card"><div class="ej-head"><span class="ej-nombre">' + esc(r.nombre) + '</span></div>' +
+    return '<div class="ej-card">' + fotoEj(r) + '<div class="ej-head"><span class="ej-nombre">' + esc(r.nombre) + '</span></div>' +
       '<div class="ej-esquema">' + esc(r.esquema) + ' · Ref: ' + esc(refTxt) + ' ' + r.unidad + '</div>' + sugTxt + '</div>';
   }).join('');
 }
@@ -488,7 +498,7 @@ function renderSesion() {
     const hechas = filas.filter(f => f.hecha).length;
     const prevMax = pesoMaxDe(state.series.filter(s => s.ejercicio === r.nombre));
     const cls = hechas === filas.length && filas.length ? ' done' : '';
-    html.push('<div class="ej-card' + cls + '" data-ej="' + esc(r.nombre) + '">');
+    html.push('<div class="ej-card' + cls + '" data-ej="' + esc(r.nombre) + '">' + fotoEj(r));
     html.push('<div class="ej-head"><span class="ej-nombre">' + esc(r.nombre) + '</span><span class="mini">' + hechas + '/' + filas.length + '</span></div>');
     html.push('<div class="ej-esquema">' + esc(r.esquema) + '</div>');
     filas.forEach((f, idx) => {
@@ -699,6 +709,9 @@ function abrirVoz(ejercicio, serieIdx) {
   voz.totalReps = voz.parsed.totalReps || 10;
   voz.estado = 'idle';
   $('vozEjercicio').textContent = ejercicio;
+  const vf = $('vozFoto');
+  if (rutina.foto) { vf.src = rutina.foto; vf.classList.remove('hide'); }
+  else { vf.removeAttribute('src'); vf.classList.add('hide'); }
   actualizarInfoSerieVoz();
   $('vozRepsObj').value = voz.totalReps;
   $('vozDescanso').value = state.config.descanso;
@@ -1061,7 +1074,7 @@ function renderRutinas() {
   for (const r of lista) {
     if (r.seccion !== seccion) { seccion = r.seccion; html += '<div class="seccion">' + esc(seccion) + '</div>'; }
     const refTxt = (r.pesos || []).map(p => p == null ? '—' : p).join(' / ');
-    html += '<div class="ej-card"><div class="ej-head"><span class="ej-nombre">' + esc(r.nombre) + '</span>' +
+    html += '<div class="ej-card">' + fotoEj(r) + '<div class="ej-head"><span class="ej-nombre">' + esc(r.nombre) + '</span>' +
       '<span><button class="btn small" data-editar="' + r.id + '">Editar</button> ' +
       '<button class="btn small danger" data-borrar="' + r.id + '">Borrar</button></span></div>' +
       '<div class="ej-esquema">' + esc(r.esquema) + ' · ' + r.series + ' series · Ref: ' + esc(refTxt) + ' ' + r.unidad + '</div></div>';

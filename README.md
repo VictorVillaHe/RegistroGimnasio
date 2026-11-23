@@ -7,8 +7,8 @@ internet en el gimnasio y se puede instalar como PWA.
 ## Qué hace
 
 - **Entrenar**: elige el día (lunes a viernes; por defecto el de hoy) e inicia
-  sesión. Cada serie se pre-carga con el peso sugerido, el último peso real o el
-  peso de referencia. Ajusta peso y reps con −/+, marca cada serie como hecha
+  sesión. Cada ejercicio muestra su foto. Cada serie se pre-carga con el peso
+  sugerido, el último peso real o el peso de referencia. Ajusta peso y reps con −/+, marca cada serie como hecha
   (✓) y ve la insignia **¡RÉCORD!** cuando superas tu peso máximo anterior en
   ese ejercicio.
 - **Panel en vivo**: tiempo transcurrido, % completado, tiempo restante
@@ -27,8 +27,8 @@ internet en el gimnasio y se puede instalar como PWA.
   "Cambia de lado" a la mitad. Descanso entre series ajustable (30–120 s, por
   defecto 60 s) con aviso de voz 7 segundos antes de la siguiente serie.
   Preparación ajustable (3/5/10/15/20/30 s, por defecto 3 s). Botones: Probar
-  voz, Pausar, Terminar serie aquí. Las series completadas se marcan solas en
-  la sesión abierta. El reloj va anclado a la hora real y pide wake lock para
+  voz, Pausar, Terminar serie aquí. La pantalla muestra la foto del ejercicio.
+  Las series completadas se marcan solas en la sesión abierta. El reloj va anclado a la hora real y pide wake lock para
   que no se duerma la pantalla.
 - **Progreso**: por ejercicio, gráfica SVG del peso máximo por fecha + volumen.
 - **Historial**: sesiones con fecha, rutina, series hechas/totales y volumen,
@@ -71,9 +71,11 @@ internet en el gimnasio y se puede instalar como PWA.
 ## Publicación en GitHub Pages
 
 1. Sube a la raíz del repositorio solo estos archivos: `index.html`,
-   `styles.css`, `app.js`, `routines.js`, `manifest.json`, `sw.js`,
-   `icon.svg` y este `README.md`. No subas `datos-exportados.json` ni
-   `respaldo-gimnasio.json`: contienen el historial personal.
+   `styles.css`, `app.js`, `routines.js`, `photos.js`, `manifest.json`,
+   `sw.js`, `icon.svg`, `CREDITS.md` y este `README.md`. No subas
+   `datos-exportados.json` ni `respaldo-gimnasio.json`: contienen el
+   historial personal. Tampoco subas la carpeta `images/`: las fotos van
+   incrustadas en `photos.js` (ver abajo).
 2. En el repositorio: Settings → Pages → Source: Deploy from a branch →
    rama `main`, carpeta `/ (root)`.
 3. Abre la URL que te da GitHub Pages. Para instalarla en el teléfono usa
@@ -81,8 +83,14 @@ internet en el gimnasio y se puede instalar como PWA.
 
 ## Pendiente / limitaciones conocidas
 
-- **Sin fotos de ejercicios** en esta versión: no se pudieron extraer del
-  registro original. Queda pendiente agregarlas (una imagen por ejercicio).
+- **Fotos**: cada ejercicio tiene una foto (de Wikimedia Commons,
+  licencias libres; créditos en `CREDITS.md`). Las fotos van incrustadas
+  como data URIs en `photos.js`, porque GitHub no acepta binarios por la
+  vía de subida usada aquí; `photos.js` se genera desde la carpeta
+  `images/` (fuente local, no va al repo) con `python3 gen-photos.py`.
+  En algunos ejercicios la foto es aproximada (misma variante o mismo
+  grupo muscular) y en 4 casos es un diagrama porque en Commons no hay
+  foto libre de ese ejercicio; se anota en `CREDITS.md`.
 - **Sin IA**: las recomendaciones nuevas son por reglas (ver arriba). Son más
   conservadoras que las que generaba el registro original con IA: solo suben
   peso cuando el ejercicio completó todas sus series en el tope del rango.

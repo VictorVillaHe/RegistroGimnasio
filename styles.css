@@ -149,6 +149,8 @@ textarea.field { resize: vertical; }
 .ej-head { display: flex; justify-content: space-between; gap: 8px; align-items: baseline; }
 .ej-nombre { font-weight: 700; }
 .ej-esquema { font-size: 0.85rem; color: var(--muted); margin: 2px 0 8px; }
+.ej-foto { display: block; width: 100%; height: 170px; object-fit: cover; object-position: center 30%; border-radius: 8px; margin-bottom: 8px; background: #e6eaf0; }
+.voz-foto { display: block; width: 100%; height: 200px; object-fit: cover; object-position: center 30%; border-radius: 10px; margin: 12px 0 4px; background: #26344d; }
 .sug { font-size: 0.85rem; color: var(--green); font-weight: 600; }
 .sug.nodata { color: var(--muted); font-weight: 400; }
 .record { display: inline-block; background: var(--gold); color: #fff; font-size: 0.75rem; font-weight: 800; border-radius: 20px; padding: 2px 8px; margin-left: 6px; vertical-align: middle; }
