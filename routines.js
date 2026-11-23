@@ -228,7 +228,6 @@ const ROUTINES = [
   },
   {
     "id": "mar-15",
-    "foto": "images/mar-15.jpg",
     "dia": "Martes",
     "rutina": "Pierna",
     "seccion": "PIERNA",

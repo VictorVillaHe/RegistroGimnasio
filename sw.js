@@ -1,5 +1,5 @@
 /* Service worker — PWA offline simple para el registro de gimnasio. */
-const CACHE = 'registro-gimnasio-v3';
+const CACHE = 'registro-gimnasio-v4';
 const ARCHIVOS = [
   'index.html',
   'styles.css',

@@ -264,7 +264,26 @@ function generarRecomendaciones(sesion, filasSesion, rutinaDia, sesionesPrevias,
       ? ' Subiste el volumen frente a ' + prev.volumen.toLocaleString('es-MX') + ' de la sesión anterior.'
       : ' Volumen similar a la sesión anterior (' + prev.volumen.toLocaleString('es-MX') + '): la próxima va de completar mejor las series finales.';
   }
+  const suben = porEjercicio.filter(p => p.sube);
+  const repiten = porEjercicio.filter(p => !p.sube && p.peso != null);
+  if (suben.length) {
+    general += ' La próxima vez sube en ' + listaConPeso(suben) + '.';
+  }
+  if (repiten.length) {
+    const top = repiten.slice(0, 3);
+    general += ' Consolida ' + listaConPeso(top) + (repiten.length > 3 ? ' y ' + (repiten.length - 3) + ' más,' : '') + ' buscando completar todas las repeticiones del rango antes de subir carga.';
+  }
   return { general, porEjercicio };
+}
+
+/* "curl con barra a 25 kg, remo en polea baja a 52,5 kg y predicador a 52,5 kg" */
+function listaConPeso(items) {
+  const partes = items.map(p => {
+    const n = p.nombre.charAt(0).toLowerCase() + p.nombre.slice(1);
+    return n + ' a ' + fmtPeso(p.peso, p.unidad);
+  });
+  if (partes.length === 1) return partes[0];
+  return partes.slice(0, -1).join(', ') + ' y ' + partes[partes.length - 1];
 }
 
 function fmtPeso(p, unidad) {
@@ -303,7 +322,7 @@ function fmtTiempo(seg) {
 
 /* Para pruebas en Node (sin DOM). */
 if (typeof module !== 'undefined' && module.exports) {
-  module.exports = { parseEsquema, construirFasesSerie, esUnilateral, calcVolumen, pesoMaxDe, sugerenciaPeso, progresoDe, generarRecomendaciones, fmtPeso, fmtFecha, hoyISO, diaSemanaDe, fmtTiempo };
+  module.exports = { parseEsquema, construirFasesSerie, esUnilateral, calcVolumen, pesoMaxDe, sugerenciaPeso, progresoDe, generarRecomendaciones, fmtPeso, fmtFecha, hoyISO, diaSemanaDe, fmtTiempo, aplicarTempo };
 }
 
 /* ================= CAPA DE DATOS (navegador) ================= */
@@ -1093,6 +1112,18 @@ function renderRutinas() {
   });
 }
 
+/* Aplica el tempo elegido en el formulario al texto del esquema.
+   Quita la cláusula simple anterior ("con N seg X por rep") si la hay
+   y agrega la nueva; con tempo vacío deja el esquema como estaba. */
+function aplicarTempo(esquema, tempo, seg) {
+  let txt = (esquema || '').trim();
+  txt = txt.replace(/\s*con\s+\d+\s*seg\s+(abajo|arriba|atrás|en isometría)\s+por rep/i, '').trim();
+  if (!tempo) return txt;
+  const n = Math.max(1, Math.min(10, parseInt(seg, 10) || 3));
+  const clausula = 'con ' + n + ' seg ' + tempo + ' por rep';
+  return txt ? txt + ' ' + clausula : clausula;
+}
+
 function abrirFormEjercicio(id) {
   const dia = $('selDiaRutina').value;
   const form = $('formEjercicio');
@@ -1104,11 +1135,15 @@ function abrirFormEjercicio(id) {
     $('fSeries').value = r.series; $('fEsquema').value = r.esquema;
     $('fPesos').value = (r.pesos || []).map(p => p == null ? '' : p).join(', ');
     $('fUnidad').value = r.unidad;
+    const mTempo = (r.esquema || '').match(/(\d+)\s*seg\s+(abajo|arriba|atrás|en isometría)/i);
+    $('fTempo').value = mTempo ? mTempo[2].toLowerCase() : '';
+    $('fTempoSeg').value = mTempo ? mTempo[1] : 3;
   } else {
     $('formEjercicioTitulo').textContent = 'Agregar ejercicio';
     $('fNombre').value = ''; $('fSeccion').value = '';
     $('fSeries').value = 3; $('fEsquema').value = '';
     $('fPesos').value = ''; $('fUnidad').value = 'kg';
+    $('fTempo').value = ''; $('fTempoSeg').value = 3;
   }
   form.classList.remove('hide');
   form.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -1127,7 +1162,7 @@ function guardarFormEjercicio() {
   const datos = {
     dia, rutina: DIAS.find(d => d.dia === dia).rutina,
     seccion: ($('fSeccion').value.trim() || 'GENERAL').toUpperCase(),
-    nombre, series: nSeries, esquema: $('fEsquema').value.trim(),
+    nombre, series: nSeries, esquema: aplicarTempo($('fEsquema').value.trim(), $('fTempo').value, $('fTempoSeg').value),
     pesos: pesos.slice(0, nSeries), unidad: $('fUnidad').value,
   };
   if (state.editandoEj) {

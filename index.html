@@ -107,6 +107,14 @@
       <label>Sección <input id="fSeccion" class="field" type="text" placeholder="HOMBRO"></label>
       <label>Número de series <input id="fSeries" class="field" type="number" min="1" max="10" value="3"></label>
       <label>Esquema <input id="fEsquema" class="field" type="text" placeholder="3 series de 10-12 rep con 2 seg arriba por rep"></label>
+      <label>Tempo <select id="fTempo" class="field">
+        <option value="">Normal (sin tempo)</option>
+        <option value="abajo">Bajada lenta</option>
+        <option value="arriba">Subida lenta</option>
+        <option value="atrás">Jalón lento</option>
+        <option value="en isometría">Isometría (aguanta)</option>
+      </select></label>
+      <label>Segundos del tempo <input id="fTempoSeg" class="field" type="number" min="1" max="10" value="3"></label>
       <label>Pesos de referencia (separados por coma) <input id="fPesos" class="field" type="text" placeholder="20, 20, 20"></label>
       <label>Unidad
         <select id="fUnidad" class="field"><option value="kg">kg</option><option value="lb">lb</option></select>

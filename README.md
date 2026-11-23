@@ -83,14 +83,15 @@ internet en el gimnasio y se puede instalar como PWA.
 
 ## Pendiente / limitaciones conocidas
 
-- **Fotos**: cada ejercicio tiene una foto (de Wikimedia Commons,
-  licencias libres; créditos en `CREDITS.md`). Las fotos van incrustadas
-  como data URIs en `photos.js`, porque GitHub no acepta binarios por la
-  vía de subida usada aquí; `photos.js` se genera desde la carpeta
-  `images/` (fuente local, no va al repo) con `python3 gen-photos.py`.
-  En algunos ejercicios la foto es aproximada (misma variante o mismo
-  grupo muscular) y en 4 casos es un diagrama porque en Commons no hay
-  foto libre de ese ejercicio; se anota en `CREDITS.md`.
+- **Fotos**: 53 de los 54 ejercicios tienen foto (de Wikimedia Commons y de
+  Openverse/Flickr, licencias libres; créditos en `CREDITS.md`). Las fotos van
+  incrustadas como data URIs en `photos.js`, porque GitHub no acepta binarios por
+  la vía de subida usada aquí; `photos.js` se genera desde la carpeta `images/`
+  (fuente local, no va al repo) con `python3 gen-photos.py`. En algunos
+  ejercicios la foto es aproximada (misma variante o mismo grupo muscular) y
+  `mar-15` (aductor en máquina) no tiene foto porque no existe foto libre de una
+  persona usando esa máquina; se anota en `CREDITS.md`. No queda ningún diagrama
+  ni foto de máquina vacía.
 - **Sin IA**: las recomendaciones nuevas son por reglas (ver arriba). Son más
   conservadoras que las que generaba el registro original con IA: solo suben
   peso cuando el ejercicio completó todas sus series en el tope del rango.
