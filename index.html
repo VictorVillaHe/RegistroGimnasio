@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0e1824">
+<title>Registro de gimnasio</title>
+<link rel="stylesheet" href="styles.css">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="icon.svg">
+</head>
+<body>
+<header class="topbar">
+  <div>
+    <h1>Registro de gimnasio</h1>
+    <p class="sub" id="fechaHoy"></p>
+  </div>
+  <div class="topstats" id="topStats"></div>
+</header>
+
+<nav class="tabs" role="tablist" aria-label="Secciones">
+  <button class="tab active" data-tab="entrenar" role="tab">Entrenar</button>
+  <button class="tab" data-tab="progreso" role="tab">Progreso</button>
+  <button class="tab" data-tab="historial" role="tab">Historial</button>
+  <button class="tab" data-tab="rutinas" role="tab">Rutinas</button>
+  <button class="tab" data-tab="config" role="tab">Config</button>
+</nav>
+
+<main class="wrap">
+
+  <!-- ============ ENTRENAR ============ -->
+  <section id="tab-entrenar" class="panel active">
+    <div id="bannerRecordatorio" class="banner hide"></div>
+
+    <div id="selectorDia" class="dayrow" role="group" aria-label="Día de la semana"></div>
+
+    <div id="vistaPrevia" class="card">
+      <h2 id="tituloRutina"></h2>
+      <p class="mini" id="resumenRutina"></p>
+      <div id="listaPrevia"></div>
+      <button id="btnIniciar" class="btn primary big">Iniciar sesión</button>
+    </div>
+
+    <div id="vistaSesion" class="hide">
+      <div class="live card">
+        <div class="live-row">
+          <div><span class="live-label">Tiempo</span><strong id="liveTiempo">00:00</strong></div>
+          <div><span class="live-label">Completado</span><strong id="livePct">0%</strong></div>
+          <div><span class="live-label">Restante</span><strong id="liveRestante">—</strong></div>
+          <div><span class="live-label">Fin estimado</span><strong id="liveFin">—</strong></div>
+        </div>
+        <div class="bar"><i id="liveBarra"></i></div>
+        <p class="mini" id="liveDetalle"></p>
+      </div>
+      <div id="listaSesion"></div>
+      <button id="btnTerminar" class="btn primary big">Terminar rutina</button>
+      <button id="btnCancelarSesion" class="btn ghost">Cancelar sesión (sin guardar)</button>
+    </div>
+
+    <div id="vistaCierre" class="hide">
+      <div class="card cierre">
+        <h2>¡Rutina terminada!</h2>
+        <p id="cierreResumen" class="big-num"></p>
+        <p class="warn-box">Si no pudiste levantar el peso en algún ejercicio, ajusta el peso antes de marcar la serie como hecha la próxima vez: lo que queda marcado cuenta como levantado.</p>
+        <h3>Para la próxima vez</h3>
+        <div id="cierreRecomendaciones"></div>
+        <label for="notaProxima">Nota personal para la próxima sesión</label>
+        <textarea id="notaProxima" rows="3" placeholder="Ej. Bajar 2.5 kg en press si el hombro molesta…"></textarea>
+        <button id="btnGuardarCierre" class="btn primary big">Guardar y cerrar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ PROGRESO ============ -->
+  <section id="tab-progreso" class="panel">
+    <div class="card">
+      <label for="selEjercicio">Ejercicio</label>
+      <select id="selEjercicio" class="field"></select>
+      <div id="progresoStats" class="stats"></div>
+      <div id="progresoGrafica"></div>
+      <div id="progresoTabla"></div>
+    </div>
+  </section>
+
+  <!-- ============ HISTORIAL ============ -->
+  <section id="tab-historial" class="panel">
+    <div class="card">
+      <h2>Sesiones</h2>
+      <div id="listaHistorial"></div>
+    </div>
+    <div id="detalleSesion" class="card hide"></div>
+  </section>
+
+  <!-- ============ RUTINAS ============ -->
+  <section id="tab-rutinas" class="panel">
+    <div class="card">
+      <p class="mini">Las rutinas son las del 29 de junio de 2025. Los pesos se muestran tal como están anotados (kg y lb distintos, sin convertir). Un solo peso anotado vale para todas las series.</p>
+      <label for="selDiaRutina">Día</label>
+      <select id="selDiaRutina" class="field"></select>
+      <div id="listaRutinas"></div>
+      <button id="btnAgregarEjercicio" class="btn">+ Agregar ejercicio</button>
+      <button id="btnRestablecerRutinas" class="btn ghost">Restablecer rutinas originales</button>
+    </div>
+    <div id="formEjercicio" class="card hide">
+      <h3 id="formEjercicioTitulo">Agregar ejercicio</h3>
+      <label>Nombre <input id="fNombre" class="field" type="text"></label>
+      <label>Sección <input id="fSeccion" class="field" type="text" placeholder="HOMBRO"></label>
+      <label>Número de series <input id="fSeries" class="field" type="number" min="1" max="10" value="3"></label>
+      <label>Esquema <input id="fEsquema" class="field" type="text" placeholder="3 series de 10-12 rep con 2 seg arriba por rep"></label>
+      <label>Pesos de referencia (separados por coma) <input id="fPesos" class="field" type="text" placeholder="20, 20, 20"></label>
+      <label>Unidad
+        <select id="fUnidad" class="field"><option value="kg">kg</option><option value="lb">lb</option></select>
+      </label>
+      <div class="btnrow">
+        <button id="btnGuardarEjercicio" class="btn primary">Guardar</button>
+        <button id="btnCancelarEjercicio" class="btn ghost">Cancelar</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ CONFIG ============ -->
+  <section id="tab-config" class="panel">
+    <div class="card">
+      <h2>Respaldo</h2>
+      <p class="mini" id="infoAlmacen"></p>
+      <div class="btnrow col">
+        <button id="btnExportar" class="btn primary">Exportar respaldo (JSON)</button>
+        <label class="btn">Importar respaldo (JSON)
+          <input id="inputImportar" type="file" accept=".json,application/json" class="hide">
+        </label>
+        <button id="btnExportarCSV" class="btn">Exportar CSV (sesiones y series)</button>
+      </div>
+      <h2>Preferencias del contador de voz</h2>
+      <label>Descanso entre series (segundos)
+        <input id="cfgDescanso" class="field" type="number" min="30" max="120" step="5" value="60">
+      </label>
+      <label>Preparación antes de empezar (segundos)
+        <select id="cfgPrep" class="field">
+          <option value="3">3 s</option><option value="5">5 s</option><option value="10">10 s</option>
+          <option value="15">15 s</option><option value="20">20 s</option><option value="30">30 s</option>
+        </select>
+      </label>
+      <h2>Zona de riesgo</h2>
+      <button id="btnBorrarTodo" class="btn danger">Borrar todo (sesiones, series y notas)</button>
+      <p class="mini">Las rutinas no se borran con esto; para restablecerlas usa el botón en la pestaña Rutinas.</p>
+    </div>
+  </section>
+</main>
+
+<!-- ============ CONTADOR DE VOZ ============ -->
+<div id="vozOverlay" class="voz hide" role="dialog" aria-label="Contador de reps con voz">
+  <div class="voz-top">
+    <div>
+      <h2 id="vozEjercicio"></h2>
+      <p class="mini" id="vozSerie"></p>
+    </div>
+    <button id="vozCerrar" class="btn ghost">✕ Salir</button>
+  </div>
+  <div class="voz-rep"><span id="vozRepNum">0</span><span class="voz-de">/ <span id="vozRepTotal">0</span></span></div>
+  <p class="voz-fase" id="vozFase">Prepárate</p>
+  <p class="voz-seg"><span id="vozSeg">0</span> s</p>
+  <div class="bar big"><i id="vozBarra"></i></div>
+  <p class="mini" id="vozAviso"></p>
+
+  <div class="voz-ajustes card">
+    <div class="grid2">
+      <label>Serie <select id="vozSerieSel" class="field"></select></label>
+      <label>Reps objetivo <input id="vozRepsObj" class="field" type="number" min="1" max="60" value="10"></label>
+      <label>Descanso (s) <input id="vozDescanso" class="field" type="number" min="30" max="120" step="5" value="60"></label>
+      <label>Preparación (s)
+        <select id="vozPrep" class="field">
+          <option value="3">3 s</option><option value="5">5 s</option><option value="10">10 s</option>
+          <option value="15">15 s</option><option value="20">20 s</option><option value="30">30 s</option>
+        </select>
+      </label>
+      <label>Tempo
+        <select id="vozTempo" class="field">
+          <option value="0.8">Rápido</option><option value="1" selected>Normal</option><option value="1.25">Lento</option>
+        </select>
+      </label>
+    </div>
+    <div class="btnrow">
+      <button id="vozProbar" class="btn">Probar voz</button>
+      <button id="vozPausa" class="btn">Pausar</button>
+      <button id="vozIniciar" class="btn primary">Empezar serie</button>
+      <button id="vozTerminar" class="btn danger">Terminar serie aquí</button>
+    </div>
+  </div>
+</div>
+
+<script src="routines.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
